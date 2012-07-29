@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InProcUI", "InProcUI\InProcUI.csproj", "{F9CEEEDC-0F3E-454D-B335-BD2984B589A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZmqUI", "ZmqUI\ZmqUI.csproj", "{5E4C122D-7ADD-426D-8C41-282E17059C69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZmqInProcConsole", "ZmqInProcConsole\ZmqInProcConsole.csproj", "{204DD82F-1024-4E5C-B68B-1689F7C3F193}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubServer", "PubServer\PubServer.csproj", "{CAA3A369-EFF0-4458-857E-BB72C268688F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubClient", "SubClient\SubClient.csproj", "{0DAE4B26-6459-47EC-B49B-F7B8808459E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9CEEEDC-0F3E-454D-B335-BD2984B589A0}.Debug|x86.ActiveCfg = Debug|x86
+		{F9CEEEDC-0F3E-454D-B335-BD2984B589A0}.Debug|x86.Build.0 = Debug|x86
+		{F9CEEEDC-0F3E-454D-B335-BD2984B589A0}.Release|x86.ActiveCfg = Release|x86
+		{F9CEEEDC-0F3E-454D-B335-BD2984B589A0}.Release|x86.Build.0 = Release|x86
+		{5E4C122D-7ADD-426D-8C41-282E17059C69}.Debug|x86.ActiveCfg = Debug|x86
+		{5E4C122D-7ADD-426D-8C41-282E17059C69}.Debug|x86.Build.0 = Debug|x86
+		{5E4C122D-7ADD-426D-8C41-282E17059C69}.Release|x86.ActiveCfg = Release|x86
+		{5E4C122D-7ADD-426D-8C41-282E17059C69}.Release|x86.Build.0 = Release|x86
+		{204DD82F-1024-4E5C-B68B-1689F7C3F193}.Debug|x86.ActiveCfg = Debug|x86
+		{204DD82F-1024-4E5C-B68B-1689F7C3F193}.Debug|x86.Build.0 = Debug|x86
+		{204DD82F-1024-4E5C-B68B-1689F7C3F193}.Release|x86.ActiveCfg = Release|x86
+		{204DD82F-1024-4E5C-B68B-1689F7C3F193}.Release|x86.Build.0 = Release|x86
+		{CAA3A369-EFF0-4458-857E-BB72C268688F}.Debug|x86.ActiveCfg = Debug|x86
+		{CAA3A369-EFF0-4458-857E-BB72C268688F}.Debug|x86.Build.0 = Debug|x86
+		{CAA3A369-EFF0-4458-857E-BB72C268688F}.Release|x86.ActiveCfg = Release|x86
+		{CAA3A369-EFF0-4458-857E-BB72C268688F}.Release|x86.Build.0 = Release|x86
+		{0DAE4B26-6459-47EC-B49B-F7B8808459E1}.Debug|x86.ActiveCfg = Debug|x86
+		{0DAE4B26-6459-47EC-B49B-F7B8808459E1}.Debug|x86.Build.0 = Debug|x86
+		{0DAE4B26-6459-47EC-B49B-F7B8808459E1}.Release|x86.ActiveCfg = Release|x86
+		{0DAE4B26-6459-47EC-B49B-F7B8808459E1}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
