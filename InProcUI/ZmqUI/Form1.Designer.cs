@@ -58,7 +58,7 @@
             this.btnGo.TabIndex = 2;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
-            this.btnGo.Click += new System.EventHandler(this.button1_Click);
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // btnStop
             // 
@@ -68,6 +68,7 @@
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // Form1
             // 
