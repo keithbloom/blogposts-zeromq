@@ -18,7 +18,7 @@ namespace ZmqInProcConsole
                 ventilator.Start();
                 sink.Start();
 
-                const int workersCount = 10;
+                const int workersCount = 20;
                 var workers = new Thread[workersCount];
 
                 for (int i = 0; i < workersCount; i++)
@@ -36,11 +36,10 @@ namespace ZmqInProcConsole
 
                 }
 
-                foreach(var worker in workers)
+                foreach (var thread in workers)
                 {
-                    worker.Abort();
+                    thread.Abort();
                 }
-
                 ventilator.Stop();
                 sink.Stop();
 

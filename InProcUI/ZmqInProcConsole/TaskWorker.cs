@@ -8,6 +8,7 @@ namespace ZmqInProcConsole
     public class TaskWorker
     {
         private readonly Context context;
+        private bool _work;
 
         public TaskWorker(Context context)
         {
@@ -23,7 +24,8 @@ namespace ZmqInProcConsole
                 reciever.Connect("inproc://ventilator");
                 sender.Connect("inproc://sink");
 
-                while (true)
+                _work = true;
+                while (_work)
                 {
                     var task = reciever.Recv(Encoding.Unicode);
 
@@ -34,7 +36,14 @@ namespace ZmqInProcConsole
 
                     sender.Send("", Encoding.Unicode);
                 }
+
+                Console.WriteLine("Worker stopping");
             }
+        }
+
+        public void Stop()
+        {
+            _work = false;
         }
     }
 }
