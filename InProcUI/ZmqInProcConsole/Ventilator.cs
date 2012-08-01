@@ -22,13 +22,6 @@ namespace ZmqInProcConsole
 
         public void Run()
         {
-            Console.WriteLine("Press enter when the workers are ready: ");
-
-            while (Console.ReadKey(true).Key != ConsoleKey.Enter)
-            {
-
-            }
-
             Console.WriteLine("Send tasks to workers..");
 
             _socket.Send("0", Encoding.Unicode);
