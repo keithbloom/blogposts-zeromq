@@ -12,20 +12,16 @@ namespace ZmqInProcConsole
             using (var context = new Context(1))
             {
                 using (var pub = context.Socket(SocketType.PUB))
-                using (var sub = context.Socket(SocketType.SUB))
-                using (var control = context.Socket(SocketType.PAIR))
+                using (var control = context.Socket(SocketType.SUB))
                 {
                     pub.Bind("inproc://workers");
-                    control.Bind("inproc://control");
-
-
-                    var threadPackage = new object[3];
-                    threadPackage[0] = context;
-                    threadPackage[1] = sub;
-                    threadPackage[2] = control;
-
-                    var step2 = new Thread(() => Worker(threadPackage));
+                    
+                    var step2 = new Thread(() => Worker(context));
                     step2.Start();
+                    Thread.Sleep(100);
+
+                    control.Connect("inproc://control");
+                    control.Subscribe("", Encoding.Unicode);
 
                     var count = 0;
                     var message = string.Empty;
@@ -45,25 +41,26 @@ namespace ZmqInProcConsole
                             z.Send(count++.ToString(), Encoding.Unicode);
                         };
 
-                    Console.WriteLine("Recieved the {0} signal",control.Recv(Encoding.Unicode));
+                    //Console.WriteLine("Recieved the {0} signal",control.Recv(Encoding.Unicode));
 
                     while (string.IsNullOrEmpty(message) || !message.Equals("Stop"))
                     {
-                        context.Poll(controlItems, -1);   
+                        context.Poll(controlItems, -1);
+                        Thread.Sleep(500);
                     }
                 }
             }
         }
 
-        public void Worker(object[] things)
+        public void Worker(object things)
         {
             {
-                var context = (Context)things[0];
-                using (var control = context.Socket(SocketType.PAIR))
+                var context = (Context)things;
+                using (var control = context.Socket(SocketType.PUB))
                 using (var sub = context.Socket(SocketType.SUB))
                 {
                     Console.WriteLine("Worker started");
-                    control.Connect("inproc://control");
+                    control.Bind("inproc://control");
 
                     sub.Subscribe("", Encoding.Unicode);
                     sub.Connect("inproc://workers");
@@ -75,7 +72,7 @@ namespace ZmqInProcConsole
                     items[0] = sub.CreatePollItem(IOMultiPlex.POLLIN);
                     items[0].PollInHandler += (x, y) =>
                         {
-                            Console.WriteLine(x.Recv(Encoding.Unicode));
+                            Console.WriteLine("Received : {0}",x.Recv(Encoding.Unicode));
                             count++;
                         };
 

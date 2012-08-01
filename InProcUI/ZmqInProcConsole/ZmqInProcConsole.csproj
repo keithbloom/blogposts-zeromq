@@ -53,6 +53,9 @@
     <Compile Include="InProcPubSub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sink.cs" />
+    <Compile Include="TaskWorker.cs" />
+    <Compile Include="Ventilator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libzmq.dll">
