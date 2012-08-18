@@ -24,7 +24,7 @@ namespace AltNetPresentation
                 Console.WriteLine("Hit enter to start");
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
 
-                const int workersCount = 20;
+                const int workersCount = 5;
                 var workers = new Thread[workersCount];
 
                 for (int i = 0; i < workersCount; i++)
@@ -37,7 +37,8 @@ namespace AltNetPresentation
                 ventilator.Run(fileList);
                 var result = sink.Run(fileList.Length);
 
-                Console.WriteLine("Count {0} files in {1} milliseconds. Directory size is {2}",fileList.Length, stopWatch.ElapsedMilliseconds, result);
+                Console.WriteLine();
+                Console.WriteLine("Found the length of {0} files in {1} milliseconds.\nDirectory size is {2}",fileList.Length, stopWatch.ElapsedMilliseconds, result);
 
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
 

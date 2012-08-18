@@ -22,7 +22,6 @@ namespace AltNetPresentation
 
         public void Run(string[] fileList)
         {
-            Console.WriteLine("[VENTILATOR] Send tasks to workers..");
             _ventilator.Send("0", Encoding.Unicode);
 
             Console.WriteLine("[VENTILATOR] Finding the size of {0} files", 
@@ -32,6 +31,9 @@ namespace AltNetPresentation
             {
                 _ventilator.Send(fileName, Encoding.Unicode);
             }
+
+            Console.WriteLine("[VENTILATOR] Finished");
+
         }
 
         public void Stop()

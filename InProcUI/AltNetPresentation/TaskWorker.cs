@@ -22,9 +22,7 @@ namespace AltNetPresentation
                 sender = _context.CreateSocket(SocketType.PUSH),
                 controller = _context.CreateSocket(SocketType.SUB))
             {
-                Console.WriteLine("Worker started");
-
-                reciever.Connect("inproc://ventilator");
+               reciever.Connect("inproc://ventilator");
                 sender.Connect("inproc://sink");
 
                 SetupController(controller);
@@ -68,10 +66,10 @@ namespace AltNetPresentation
                 if (fs != null) fs.Dispose();
             }
 
-            Console.WriteLine("The length is: {0}",fileLength);
+            Console.Write(".");
 
             sender.Send(fileLength.ToString(), Encoding.Unicode);
-            //Thread.Sleep(10);
+            Thread.Sleep(50);
         }
 
 
