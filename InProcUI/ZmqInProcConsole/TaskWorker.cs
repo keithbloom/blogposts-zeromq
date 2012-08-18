@@ -26,11 +26,9 @@ namespace ZmqInProcConsole
                 reciever.Connect("inproc://ventilator");
                 sender.Connect("inproc://sink");
                 
-                
                 controller.Subscribe("",Encoding.Unicode);
                 controller.Connect("inproc://controller");
                 
-
                 _work = true;
 
                 var items = new PollItem[2];
