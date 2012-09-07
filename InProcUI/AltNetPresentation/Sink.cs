@@ -27,11 +27,11 @@ namespace AltNetPresentation
 
         public Int64 Run(int length)
         {
-            Console.WriteLine("[SINK] Start listening for results");
-            _receiver.Receive(Encoding.Unicode);
+            InitSink();
+
             Int64 sizeOfDirectory = 0;
             
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
             {
                 var size = _receiver.Receive(Encoding.Unicode);
                 Int64 temp;
@@ -41,12 +41,23 @@ namespace AltNetPresentation
                 }
             }
             
+            EndSink();
+
+            return sizeOfDirectory;
+        }
+
+        private void EndSink()
+        {
             _controller.Send("KILL", Encoding.Unicode);
 
             Console.WriteLine();
             Console.WriteLine("[SINK] Finsihed");
+        }
 
-            return sizeOfDirectory;
+        private void InitSink()
+        {
+            Console.WriteLine("[SINK] Start listening for results");
+            _receiver.Receive(Encoding.Unicode);
         }
 
         public void Stop()

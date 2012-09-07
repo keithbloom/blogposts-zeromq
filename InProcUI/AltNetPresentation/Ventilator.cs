@@ -22,18 +22,29 @@ namespace AltNetPresentation
 
         public void Run(string[] fileList)
         {
-            _ventilator.Send("0", Encoding.Unicode);
 
-            Console.WriteLine("[VENTILATOR] Finding the size of {0} files", 
-                fileList.Length);
+            InitVentilator(fileList);
 
             foreach (var fileName in fileList)
             {
                 _ventilator.Send(fileName, Encoding.Unicode);
             }
 
-            Console.WriteLine("[VENTILATOR] Finished");
+            EndVentilator();
 
+        }
+
+        private static void EndVentilator()
+        {
+            Console.WriteLine("[VENTILATOR] Finished");
+        }
+
+        private void InitVentilator(string[] fileList)
+        {
+            Console.WriteLine("[VENTILATOR] Finding the size of {0} files",
+                              fileList.Length);
+
+            _ventilator.Send("0", Encoding.Unicode);
         }
 
         public void Stop()

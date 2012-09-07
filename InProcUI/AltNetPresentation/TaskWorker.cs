@@ -18,23 +18,23 @@ namespace AltNetPresentation
 
         public void Run()
         {
-            using (ZmqSocket reciever = _context.CreateSocket(SocketType.PULL),
-                sender = _context.CreateSocket(SocketType.PUSH),
+            using (ZmqSocket ventilator = _context.CreateSocket(SocketType.PULL),
+                sink = _context.CreateSocket(SocketType.PUSH),
                 controller = _context.CreateSocket(SocketType.SUB))
             {
-               reciever.Connect("inproc://ventilator");
-                sender.Connect("inproc://sink");
+                ventilator.Connect("inproc://ventilator");
+                sink.Connect("inproc://sink");
 
                 SetupController(controller);
 
                 _work = true;
 
-                reciever.ReceiveReady += (socket, events) =>
+                ventilator.ReceiveReady += (socket, events) =>
                     {
-                        RecieverPollInHandler(reciever, sender);
+                        RecieverPollInHandler(ventilator, sink);
                     };
 
-                var poller = new Poller(new[] {reciever, controller});
+                var poller = new Poller(new[] {ventilator, controller});
 
                 while (_work)
                 {
@@ -45,9 +45,9 @@ namespace AltNetPresentation
         }
 
 
-        /* This is the place to read the file size */
         private void RecieverPollInHandler(ZmqSocket reciever, ZmqSocket sender)
         {
+            Thread.Sleep(100);
             var fileToMeasure = reciever.Receive(Encoding.Unicode);
             
             Int64 fileLength = 0;
@@ -69,7 +69,6 @@ namespace AltNetPresentation
             Console.Write(".");
 
             sender.Send(fileLength.ToString(), Encoding.Unicode);
-            Thread.Sleep(50);
         }
 
 

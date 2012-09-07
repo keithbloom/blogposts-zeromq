@@ -24,7 +24,7 @@ namespace AltNetPresentation
                 Console.WriteLine("Hit enter to start");
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
 
-                const int workersCount = 5;
+                const int workersCount = 4;
                 var workers = new Thread[workersCount];
 
                 for (int i = 0; i < workersCount; i++)
@@ -32,7 +32,7 @@ namespace AltNetPresentation
                     (workers[i] = new Thread(() => new TaskWorker(context).Run())).Start();
                 }
 
-                var fileList = EnumerateDirectory(@"C:\Users\keith\Downloads", "*.*", SearchOption.AllDirectories);
+                var fileList = EnumerateDirectory(@"C:\Users\keithbloom\Downloads", "*.*", SearchOption.AllDirectories);
 
                 ventilator.Run(fileList);
                 var result = sink.Run(fileList.Length);
